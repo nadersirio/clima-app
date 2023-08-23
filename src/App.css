@@ -1,19 +1,27 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.clima-card {
+  background-color: #b0b8c9;
+  min-height: 50vh;
+  min-width: 30vw;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+
+.stackStyle {
+  margin-left: 10px;
+}
+
+.text-card{
+  min-height: 400px;
+  max-width: 350px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.text-card p {
+  font-size: 20px;
 }
