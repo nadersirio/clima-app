@@ -4,9 +4,19 @@ import { SearchAppBar } from './Modal-App-bar';
 
 export const App = () => {
   const [ msg, setMsg ] = useState(false)
+  const [inputFocused, setInputFocused] = useState(false);
+  const cardStyle = {
+    opacity: inputFocused ? 1 : 0.8,
+  };
+
   return (
-    <div className="clima-card">
-      <SearchAppBar />
+    <div style={cardStyle} className="clima-card">
+      <SearchAppBar
+        inputFocused={inputFocused}
+        setInputFocused={setInputFocused}
+        msg={msg}
+        setMsg={setMsg}
+      />
       <div className='text-card'>
         {!msg ? (
           <>
@@ -14,7 +24,7 @@ export const App = () => {
             <p>Insira sua cidade, para descobrir qual o clima atual ai!!</p>
           </>
         ) : (
-          <h1>msg é true</h1>
+          <h1>informações da cidade</h1>
         )}
       </div>
     </div>
