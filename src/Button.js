@@ -14,10 +14,14 @@ const ColorButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const CustomizedButtons = ({msg, setMsg}) => {
+export const CustomizedButtons = ({valueInput, msg, setMsg, setHideModal}) => {
+  const checkValueInput = () => {
+    return valueInput !== '' && !msg ? setMsg(true) : setMsg(false) & setHideModal(false);
+  }
+
   return (
     <Stack className="stackStyle" spacing={2}>
-      <ColorButton onClick={() => {!msg ? setMsg(true) : setMsg(false)}} variant="contained">Buscar</ColorButton>
+      <ColorButton onClick={checkValueInput} variant="contained">Buscar</ColorButton>
     </Stack>
   );
 }
