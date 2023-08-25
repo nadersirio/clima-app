@@ -1,5 +1,6 @@
-export const fetchApi = async (query) => {
+import { api } from './@api-key';
 
+export const fetchApi = async (query) => {
   try {
     const data = await fetch(`${api.base}weather?q=${query}&lang=pt_br&units=metric&APPID=${api.key}`);
     const clima = await data.json();
