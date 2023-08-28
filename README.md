@@ -7,5 +7,10 @@ s
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+### Exemple How to Create an Cookie, to use the WeatherAPI.
 
-document.cookie = "key=1234"
+You need to generate a key in https://api.openweathermap.org
+
+Then, follow this next staps:
+  In the console Page, use the command:
+    document.cookie = "key=1234"
