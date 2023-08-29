@@ -7,7 +7,7 @@ export const App = () => {
   const [msg, setMsg] = useState(false);
   const [cidade, setCidade] = useState('');
   const [inputFocused, setInputFocused] = useState(false);
-  const [climaData, setClimaData] = useState(null);
+  const [climaData, setClimaData] = useState([]);
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(false);
 
@@ -19,7 +19,8 @@ export const App = () => {
     const fetchData = async () => {
       try {
         const data = await fetchApi(cidade);
-        setClimaData(data.name);
+        setClimaData(data);
+        console.log(data)
         setError(null);
       } catch (error) {
         setClimaData(null);
@@ -34,6 +35,10 @@ export const App = () => {
       fetchData();
     }
   }, [msg, cidade]);
+
+  useEffect(() => {
+    console.log(climaData);
+  }, [climaData]);
 
   return (
     <div style={cardStyle} className="clima-card">
@@ -60,7 +65,11 @@ export const App = () => {
             ) : (
               <>
                 <h1>Informações da cidade</h1>
-                <h2>Nome da cidade: {climaData}</h2>
+                <ul>
+                  <li><p>{climaData.city}</p></li>
+                  <li><p>Temperatura: {climaData.weather}°</p></li>
+                  <li><p>Sensação Térmica: {climaData.weather}°</p></li>
+                </ul>
               </>
             )}
           </>
