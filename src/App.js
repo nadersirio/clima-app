@@ -20,11 +20,10 @@ export const App = () => {
       try {
         const data = await fetchApi(cidade);
         setClimaData(data);
-        console.log(data)
         setError(null);
       } catch (error) {
-        setClimaData(null);
         setError(error.message);
+        setClimaData([]);
       }
 
       setCidade('');
@@ -35,10 +34,6 @@ export const App = () => {
       fetchData();
     }
   }, [msg, cidade]);
-
-  useEffect(() => {
-    console.log(climaData);
-  }, [climaData]);
 
   return (
     <div style={cardStyle} className="clima-card">

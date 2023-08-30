@@ -6,7 +6,7 @@ export const fetchApi = async (query) => {
     const data = await fetch(`${api_Base}weather?q=${query}&lang=pt_br&units=metric&APPID=${Cookies.get('key')}`);
     const res = await data.json();
     if(data.status !== 200) {
-      throw new Error(`${clima.cod}, ${clima.message}`);
+      throw new Error(data.status === 401 ? `${data.status}, Por favor, insira sua Key, para inspecionar o clima.` : `${data.status}, Esta cidade não foi encontrada.`);
     }
 
     const clima = {
