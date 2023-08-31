@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Button  from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -15,13 +15,15 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 export const CustomizedButtons = ({valueInput, msg, setMsg, setHideModal}) => {
+  const [changeButton, setChange] = useState(false)
   const checkValueInput = () => {
-    return valueInput !== '' && !msg ? setMsg(true) : setMsg(false) & setHideModal(false);
+    if(valueInput !== '' && !msg) return setMsg(true) & setChange(true);
+    return setMsg(false) & setHideModal(false) & setChange(false);
   }
 
   return (
     <Stack className="stackStyle" spacing={2}>
-      <ColorButton onClick={checkValueInput} variant="contained">Buscar</ColorButton>
+      <ColorButton onClick={checkValueInput} variant="contained">{changeButton ? 'Resetar' : 'Buscar'}</ColorButton>
     </Stack>
   );
 }

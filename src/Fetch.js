@@ -8,12 +8,12 @@ export const fetchApi = async (query) => {
     if(data.status !== 200) {
       throw new Error(data.status === 401 ? `${data.status}, Por favor, insira sua Key, para inspecionar o clima.` : `${data.status}, Esta cidade não foi encontrada.`);
     }
-
     const clima = {
       'city': res.name,
       'weather': res.main.temp,
-      'temperature': res.weather.feels_like,
-      'wind': res.wind,
+      'temperature': res.main.feels_like,
+      'wind': res.wind.speed,
+      'description': res.weather[0].description,
     }
     return clima;
   } catch (error) {
