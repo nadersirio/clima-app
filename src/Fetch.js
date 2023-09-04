@@ -1,5 +1,7 @@
 import Cookies from 'js-cookie';
 
+//"key=3ee32176fbc4070662893138e0e9dea6"
+
 export const fetchApi = async (query) => {
   const api_Base = "https://api.openweathermap.org/data/2.5/";
   try {
