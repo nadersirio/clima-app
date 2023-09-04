@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Button  from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { green } from '@mui/material/colors';
-import './App.css';
+import './App.scss';
 
 const ColorButton = styled(Button)(({ theme }) => ({
   boxShadow: 'white 0 2px 5px 0px',
@@ -14,11 +14,11 @@ const ColorButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-export const CustomizedButtons = ({valueInput, msg, setMsg, setHideModal}) => {
+export const CustomizedButtons = ({valueInput, msg, setMsg, setHideModal, setError}) => {
   const [changeButton, setChange] = useState(false)
   const checkValueInput = () => {
     if(valueInput !== '' && !msg) return setMsg(true) & setChange(true);
-    return setMsg(false) & setHideModal(false) & setChange(false);
+    return setMsg(false) & setHideModal(false) & setChange(false) & setError(null);
   }
 
   return (
