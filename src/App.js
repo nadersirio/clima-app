@@ -1,4 +1,5 @@
-import './App.css';
+import './App.scss';
+import './index.scss';
 import { useState, useEffect } from 'react';
 import SearchAppBar from './components/SearchAppBar';
 import { fetchApi } from './Fetch';
@@ -15,7 +16,7 @@ export const App = () => {
   const [climaData, setClimaData] = useState([]);
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
 
   const cardStyle = {
@@ -24,16 +25,19 @@ export const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true)
       try {
         const data = await fetchApi(cidade);
         setClimaData(data);
         setError(null);
       } catch (error) {
         setError(error.message);
+        setMsg(false);
         setClimaData([]);
       }
       setCidade('');
       setDisabled(true);
+      setIsLoading(false)
     };
 
     if (msg && cidade !== '') {
@@ -52,31 +56,29 @@ export const App = () => {
         setMsg={setMsg}
         disabled={disabled}
         setDisabled={setDisabled}
+        setError={setError}
       />
       <div className='text-card'>
-        {!msg ? (
+        {isLoading ? (<h1>Carregando...</h1>) : ''}
+        {error ? ( <h2>Error: {error}</h2>) : ''}
+        {!msg && !error ? (
           <>
             <h1>Bem Vindo!</h1>
             <p>Insira sua cidade, para descobrir qual o clima atual ai!!</p>
           </>
-        ) : (
+        ) : ''}
+        {msg && !isLoading ? (
           <>
-            {error ? (
-              <h2>Error: {error}</h2>
-            ) : (
-              <>
-                <h1>Informações da cidade</h1>
-                <ul>
-                  <li><h2><LocationCityIcon />{climaData.city}</h2></li>
-                  <li><p><DeviceThermostatIcon /> Temperatura: {parseFloat(climaData.weather).toFixed()}°</p></li>
-                  <li><p><AcUnitIcon />Sensação Térmica: {parseFloat(climaData.temperature).toFixed()}°</p></li>
-                  <li><p><AirIcon />Ventos: {climaData.wind} Km/h</p></li>
-                  <li><p><DescriptionIcon />Descrição: {climaData.description}.</p></li>
-                </ul>
-              </>
-            )}
+            <h1>Informações da cidade</h1>
+            <ul>
+              <li><h2><LocationCityIcon />{climaData.city}</h2></li>
+              <li><p><DeviceThermostatIcon /> Temperatura: {parseFloat(climaData.weather).toFixed()}°</p></li>
+              <li><p><AcUnitIcon />Sensação Térmica: {parseFloat(climaData.temperature).toFixed()}°</p></li>
+              <li><p><AirIcon />Ventos: {climaData.wind} Km/h</p></li>
+              <li><p><DescriptionIcon />Descrição: {climaData.description}.</p></li>
+            </ul>
           </>
-        )}
+        ) : ''}
       </div>
     </div>
   );

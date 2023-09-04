@@ -2,7 +2,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import SearchIcon from '@mui/icons-material/Search';
 import { CustomizedButtons } from "../../Button";
-import '../../App.css';
+import '../../App.scss';
 
 import * as S from './styles';
 
@@ -15,6 +15,7 @@ function SearchAppBar({
   setMsg,
   disabled,
   setDisabled,
+  setError,
 }) {
   return (
     <S.Box isFocused={!inputFocused}>
@@ -39,6 +40,7 @@ function SearchAppBar({
             msg={msg}
             setMsg={setMsg}
             setHideModal={setDisabled}
+            setError={setError}
           />
         </Toolbar>
       </AppBar>
