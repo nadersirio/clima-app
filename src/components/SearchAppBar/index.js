@@ -16,11 +16,12 @@ function SearchAppBar({
   disabled,
   setDisabled,
   setError,
+  setWeather,
 }) {
   return (
     <S.Box isFocused={!inputFocused}>
       <AppBar className='search-app-bar__app-bar' position='static'>
-        <Toolbar>
+        <Toolbar className='toolbarStyle'>
           <S.Search>
             <S.SearchIconWrapper>
               <SearchIcon />
@@ -41,6 +42,7 @@ function SearchAppBar({
             setMsg={setMsg}
             setHideModal={setDisabled}
             setError={setError}
+            setWeather={setWeather}
           />
         </Toolbar>
       </AppBar>

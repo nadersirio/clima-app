@@ -14,6 +14,7 @@ export const fetchApi = async (query) => {
       'temperature': res.main.feels_like,
       'wind': res.wind.speed,
       'description': res.weather[0].description,
+      'mainWeather': res.weather[0].main,
     }
     return clima;
   } catch (error) {

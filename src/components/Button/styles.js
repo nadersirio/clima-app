@@ -1,12 +1,13 @@
 import { styled } from '@mui/material/styles';
 import Button  from '@mui/material/Button';
-import { green } from '@mui/material/colors';
+import { blue } from '@mui/material/colors';
 
 export const ColorButton = styled(Button)(({ theme }) => ({
   boxShadow: 'white 0 2px 5px 0px',
-  color: theme.palette.getContrastText(green[100]),
-  backgroundColor: green[300],
+  margin: '0 0 0 10px',
+  color: theme.palette.getContrastText(blue[100]),
+  backgroundColor: blue[600],
   '&:hover': {
-    backgroundColor: green[600],
+    backgroundColor: blue[900],
   },
 }));

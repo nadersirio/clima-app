@@ -3,12 +3,8 @@ import * as S from './styles';
 import { useState, useEffect } from 'react';
 import SearchAppBar from '../SearchAppBar';
 import { fetchApi } from '../Fetch';
-import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
-import AirIcon from '@mui/icons-material/Air';
-import DescriptionIcon from '@mui/icons-material/Description';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import LocationCityIcon from '@mui/icons-material/LocationCity';
 import RefreshIcon from '@mui/icons-material/Refresh';
+import { LiRender } from '../LiRender'
 
 export const App = () => {
   const [msg, setMsg] = useState(false);
@@ -26,14 +22,14 @@ export const App = () => {
       try {
         const data = await fetchApi(cidade);
         setClimaData(data);
-        setWeather(data.weather)
+        setWeather(data.mainWeather);
         setError(null);
       } catch (error) {
         setError(error.message);
         setMsg(false);
         setClimaData([]);
+        setWeather(null);
       }
-      setWeather(null);
       setCidade('');
       setDisabled(true);
       setIsLoading(false)
@@ -45,8 +41,8 @@ export const App = () => {
   }, [msg, cidade]);
 
   return (
-    <S.ContentBox $weather={weather}>
-      <S.ClimaCard $inputFocused={inputFocused}>
+    <S.ContentBox>
+      <S.ClimaCard $inputFocused={inputFocused} $weather={weather}>
         <SearchAppBar
           inputFocused={inputFocused}
           setInputFocused={setInputFocused}
@@ -57,6 +53,7 @@ export const App = () => {
           disabled={disabled}
           setDisabled={setDisabled}
           setError={setError}
+          setWeather={setWeather}
         />
         <S.TextCard>
           {isLoading ? (<S.Rotate><RefreshIcon fontSize='large'/></S.Rotate>) : ''}
@@ -70,41 +67,7 @@ export const App = () => {
             </>
           ) : ''}
           {msg && !isLoading ? (
-            <>
-              <h1>Informações da cidade</h1>
-              <S.UlChildrenTextCard>
-                <li>
-                  <h2>
-                    <LocationCityIcon />
-                    {climaData.city}
-                  </h2>
-                </li>
-                <li>
-                  <S.PChildrenTextCard>
-                    <DeviceThermostatIcon />
-                    Temperatura: {parseFloat(climaData.weather).toFixed()}°C
-                  </S.PChildrenTextCard>
-                </li>
-                <li>
-                  <S.PChildrenTextCard>
-                    <AcUnitIcon />
-                    Sensação Térmica: {parseFloat(climaData.temperature).toFixed()}°C
-                  </S.PChildrenTextCard>
-                </li>
-                <li>
-                  <S.PChildrenTextCard>
-                    <AirIcon />
-                    Ventos: {climaData.wind} Km/h
-                  </S.PChildrenTextCard>
-                </li>
-                <li>
-                  <S.PChildrenTextCard>
-                    <DescriptionIcon />
-                    Descrição: {climaData.description}.
-                  </S.PChildrenTextCard>
-                </li>
-              </S.UlChildrenTextCard>
-            </>
+            <LiRender climaData={climaData}/>
           ) : ''}
         </S.TextCard>
       </S.ClimaCard>

@@ -15,7 +15,7 @@ export const Search = styled('div')(({ theme }) => ({
   width: '100%',
   [theme.breakpoints.up('sm')]: {
     opacity: 1,
-    marginLeft: theme.spacing(1),
+    marginLeft: theme.spacing(2),
     width: 'auto',
   },
 }));
@@ -56,6 +56,9 @@ export const Box = styled(BoxBase)`
 
   .search-app-bar__app-bar {
     border-radius: 15px 15px 0 0;
-    background-color: green;
+    background-color: royalblue;
+  }
+  .toolbarStyle {
+    gap: 10px;
   }
 `

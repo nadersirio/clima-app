@@ -6,19 +6,23 @@ export const ContentBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(/images/default-background.jpg);
+  background-image: url('/images/default.jpg');
 `;
 
-
 export const ClimaCard = styled.div`
-  min-height: 50vh;
+  min-height: ${props =>
+    props.$weather ? '70vh' : '50vh'};
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: rgb(183, 207, 228);
-  opacity: 0.9;
-  opacity: ${props => (props.$inputFocused ? 1 : 0.8)};
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 1;
+  background-image: ${props =>
+    props.$weather ? `url("/images/${props.$weather}.jpg")` : ''};
 `;
 
 export const StackStyle = styled.div`
@@ -38,16 +42,7 @@ export const TextCard = styled.div`
 export const PChildrenTextCard = styled.p`
   font-size: 20px;
   margin: 5px 0 0 0;
-  border-bottom: solid 2px green;
-`;
-
-export const UlChildrenTextCard = styled.ul`
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding-inline-start: 0;
+  border-bottom: solid 2px royalblue;
 `;
 
 const rotate = keyframes`
