@@ -1,5 +1,13 @@
 ## Available Scripts
 
+Project in ReactJS that aims to fetch the weather of any city, using fetchAPI from https://api.openweathermap.org
+
+Also used:
+.Styled Components
+.MUI lib
+.Js Cookie
+
+
 In the project directory, you can run:
 
 ### `npm start`
