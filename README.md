@@ -19,6 +19,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 You need to generate a key in https://api.openweathermap.org
 
-Then, follow this next staps:
+Then, follow this next steps:
   In the console Page, use the command:
-    document.cookie = "key=1234"
+    document.cookie = "key=YOUR_API_KEY"
