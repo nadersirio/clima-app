@@ -1,8 +1,11 @@
+![]([https://github.com/Your_Repository_Name/Your_GIF_Name.gif](https://github.com/nadersirio/clima-app/blob/master/public/images/Desktop%202023.09.08%20-%2011.47.23.05.DVR_Trim.gif))
+
 ## Available Scripts
 
 Project in ReactJS that aims to fetch the weather of any city, using fetchAPI from https://api.openweathermap.org
 
 Also used:
+
 .Styled Components
 
 .MUI lib
