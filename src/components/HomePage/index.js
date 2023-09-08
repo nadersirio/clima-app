@@ -22,7 +22,7 @@ export const App = () => {
       try {
         const data = await fetchApi(cidade);
         setClimaData(data);
-        setWeather(data.mainWeather);
+        checkWeather(data.mainWeather);
         setError(null);
       } catch (error) {
         setError(error.message);
@@ -39,6 +39,11 @@ export const App = () => {
       fetchData();
     }
   }, [msg, cidade]);
+
+  const checkWeather = (mainWeather) => {
+      if(mainWeather === "Haze") return setWeather("Clouds");
+      return setWeather(mainWeather);
+  }
 
   return (
     <S.ContentBox>
